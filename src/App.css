@@ -1,0 +1,117 @@
+.form-container{
+    background-color: #fa9b3c;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    margin-top: -15px;
+}
+.hide-form{
+    display: none;
+}
+.form{
+    margin-left: 10px;
+    margin-right: 15px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fa9b3c;
+}
+label{
+    font-weight: 600;
+    font-size: 20px;
+}
+.input{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+}
+.text-area1{
+    width: 100%;
+    height: 80px;
+    margin-bottom: 15px;
+}
+.text-area2{
+    width: 100%;
+    height: 120px;
+    margin-bottom: 10px;
+}
+.btn-container{
+    width: 100%;
+}
+.add-btn, .submit-btn{
+    margin-right: 5px;
+    width: 70px;
+    cursor: pointer;
+    border: none;
+    background-color: #04447d;
+    height: 25px;
+    border-radius: 3px;
+    color: white;
+}
+.close-btn{
+    width: 70px;
+    cursor: pointer;
+    border: none;
+    background-color: #04447d;
+    height: 25px;
+    border-radius: 3px;
+    color: white;
+}
+.recipe-names{
+    height: 120px;
+    background-color: #04447d;
+    color: white;
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /* border-radius: 5px; */
+}
+.recipe-details{
+    height: 400px;
+    background-color: #04447d;
+    color: white;
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /* border-radius: 5px; */
+}
+.recipe-details-header{
+    height: 50px;
+}
+.details-container{
+    background-color: #704950;
+    height: 300px;
+    margin-top: -16px;
+}
+.create-btn-container{
+    height: 50px;
+}
+
+@media only screen and (min-width: 600px) {
+    .form{
+        margin-left: 40px;
+        margin-right: 45px;
+        /* margin-top: 50px; */
+        padding-top: 50px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .form {
+        margin-left: 70px;
+        margin-right: 75px;
+        padding-top: 50px;
+        /* margin-top: 50px; */
+    }
+}
+@media only screen and (min-width: 992px) {
+    .form {
+        margin-left: 200px;
+        margin-right: 205px;
+        padding-top: 50px;
+        /* margin-top: 50px; */
+    }
+}
