@@ -1,13 +1,6 @@
 import React from 'react';
 import './App.css';
 
-const arr = [
-  
-  { recipe: 'rice', ingredients: 'fish for rice', directions: 'cook well', id: 0},
-  { recipe: 'beans', ingredients: 'meat for beans', directions: 'add beans', id: 1},
-  { recipe: 'yam', ingredients: 'oil for yam stew', directions: 'fry yam stew', id: 2},
-  { recipe: 'soup', ingredients: 'meat for soup', directions: 'cook soup', id: 3}
-]
 
 function App() {
   // localStorage.setItem("info", JSON.stringify([]));

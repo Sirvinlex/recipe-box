@@ -89,7 +89,6 @@ label{
     margin-right: auto;
     width: 100%;
     overflow-y: scroll;
-    /* border-radius: 5px; */
 }
 .recipe-names tr:nth-child(even) {
     background-color: #fa9b3c;
@@ -115,13 +114,10 @@ label{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    /* border-radius: 5px; */
 }
 .recipe-details-header{
     height: 50px;
-    /* padding-top: 5px; */
     display: flex;
-        /* justify-content: center; */
     align-items: center;
 }
 .recipe-details-header > span{
@@ -150,7 +146,6 @@ label{
 .details-container{
     background-color: #704950;
     height: 300px;
-    /* margin-top: -16px; */
     padding-left: 10px;
     overflow-y: scroll;
 }
@@ -169,7 +164,6 @@ label{
 .create-btn-container{
     height: 50px;
     display: flex;
-        /* justify-content: center; */
     align-items: center;
 }
 .create-btn{
@@ -186,7 +180,6 @@ label{
     .form{
         margin-left: 40px;
         margin-right: 45px;
-        /* margin-top: 50px; */
         padding-top: 50px;
     }
 }
@@ -195,7 +188,6 @@ label{
         margin-left: 70px;
         margin-right: 75px;
         padding-top: 50px;
-        /* margin-top: 50px; */
     }
 }
 @media only screen and (min-width: 992px) {
