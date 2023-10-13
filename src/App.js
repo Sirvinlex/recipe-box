@@ -25,7 +25,7 @@ function App() {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    if (!recipe || !ingredients || !directions) alert('Please fill all fields');
+    if (!recipe || !ingredients || !directions) alert('Please fill in all fields');
     else{
       const id = Math.ceil((Date.now() * Math.random()) + 1);
       setLocalData([...localData,  {recipe, ingredients, directions, id}]);
@@ -33,6 +33,7 @@ function App() {
       setRecipe('');
       setIngredients('');
       setDirections('');
+      setShowForm(false);
     }
   }
 
@@ -73,7 +74,7 @@ function App() {
 
   const submitEdit = (e) =>{
     e.preventDefault();
-    if (!recipe || !ingredients || !directions) alert('Please fill all fields');
+    if (!recipe || !ingredients || !directions) alert('Please fill in all fields');
     else{
       const toBeUpdated = localData.concat([]);
 
@@ -82,9 +83,12 @@ function App() {
           item.recipe = recipe;
           item.ingredients = ingredients;
           item.directions = directions;
+          setShow(item)
         }
       })
+      // console.log(toBeUpdated)
       setLocalData(toBeUpdated);
+      
       setRecipe('');
       setIngredients('');
       setDirections('');
@@ -92,6 +96,15 @@ function App() {
       setIsEdit(false);
       setShowForm(false);
     }
+  }
+
+  const handleClose = () =>{
+    setShowForm(false);
+    setIsEdit(false);
+    setRecipe('');
+    setIngredients('');
+    setDirections('');
+    setEditId('');
   }
 
   const displayedItem = show ? show : {};
@@ -111,19 +124,20 @@ function App() {
           <textarea className='text-area2' placeholder='Separate each step with a "/": Add two spoons of powdered pepper. / Add 10ml of oil. ' onChange={handleDir} id='directions' value={directions} />
           <div className='btn-container'>
             {isEdit ? <button onClick={submitEdit} type='button' className='submit-btn'>Submit</button> : <button type='submit' className='add-btn'>Add</button>}
-            <button type='button' className='close-btn' onClick={() => setShowForm(false)}>Close</button>
+            <button type='button' className='close-btn' onClick={handleClose}>Close</button>
           </div>
         </form>
       </div>
 
       {/* <div> */}
+      <p className='recipe-box'>Recipe Box</p>
       <div className='recipe-names'>
         <table>
           <tbody>
-            {localData.map((item) =>{
+            {localData.map((item, i) =>{
               return (
                 // <p key={item.id} onClick={(e) => setShow(item)} id ={item.id}>{item.recipe}</p>
-                <tr key={item.id}>
+                <tr key={i}>
                   <td onClick={(e) => setShow(item)} id ={item.id}>{item.recipe}</td>
                 </tr>
                 )
@@ -134,31 +148,32 @@ function App() {
       
       <div className='recipe-details'>
         <div className='recipe-details-header'>
-          <span>{show?.recipe}</span> <button onClick={handleDelete} id={show?.id} type='button'>Del</button>
-          <button type='button' onClick={handleEdit} id={show?.id}>Edit</button>
+          <span>{show?.recipe}</span> 
+          <button className={Object.keys(displayedItem).length > 0 ? 'delete-btn' : 'hide-btn'} onClick={handleDelete} id={show?.id} type='button'>Delete</button>
+          <button type='button' onClick={handleEdit} id={show?.id} className={Object.keys(displayedItem).length > 0 ? 'edit-btn' : 'hide-btn'}>Edit</button>
         </div>
         {/* {show?.ingredients}, {show?.directions}  */}
         <div className='details-container'>
           <p>{keys[1]}</p>
           <ul>
-            {ingr.map((item) =>{
+            {ingr.map((item, i) =>{
             return(
-                <li key={item}>{item}</li>
+                <li key={i}>{item}</li>
             )
           })}
           </ul>
           
           <p>{keys[2]}</p>
           <ol>
-            {dir.map((item) =>{
+            {dir.map((item, i) =>{
             return(
-                <li key={item}>{item}</li>
+                <li key={i}>{item}</li>
             )
           })}
           </ol>
         </div>
         <div className='create-btn-container'>
-          <button type='button' className='create-btn' onClick={() => setShowForm(true)}>Create</button>
+          <button type='button' className='create-btn' onClick={() => setShowForm(true)}>Create recipe</button>
         </div>
       </div>
       {/* </div> */}
