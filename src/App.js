@@ -3,12 +3,13 @@ import './App.css';
 
 
 function App() {
-  // localStorage.setItem("info", JSON.stringify([]));
-  const info = JSON.parse(localStorage.getItem("info"))
+  const info = JSON.parse(localStorage.getItem("info"));
   const myInfo = info ? info : [];
+  const display = JSON.parse(localStorage.getItem("display"));
+  const myDisplay = display ? display : {};
   const [data, setData] = React.useState([]);
   const [localData, setLocalData] = React.useState(myInfo);
-  const [show, setShow] = React.useState(localData[0]);
+  const [show, setShow] = React.useState(myDisplay);
   const [recipe, setRecipe] = React.useState('');
   const [ingredients, setIngredients] = React.useState('');
   const [directions, setDirections] = React.useState('');
@@ -22,7 +23,7 @@ function App() {
     else{
       const id = Math.ceil((Date.now() * Math.random()) + 1);
       setLocalData([...localData,  {recipe, ingredients, directions, id}]);
-      if(localData.length === 0) setShow({recipe, ingredients, directions, id});
+      setShow({recipe, ingredients, directions, id});
       setRecipe('');
       setIngredients('');
       setDirections('');
@@ -32,8 +33,10 @@ function App() {
 
   React.useEffect(() =>{
     localStorage.setItem("info", JSON.stringify(localData));
-    // if(localData.length === 1) setShow(localData[0]);
   }, [localData])
+  React.useEffect(() =>{
+    localStorage.setItem("display", JSON.stringify(show));
+  }, [show]);
   const handleRecipe = (e) =>{
    setRecipe(e.target.value);
   }
@@ -50,7 +53,6 @@ function App() {
     setLocalData(updated);
     setShow({});
   }
-  // const set = () => setShow(localData[0])
   const handleEdit = (e) =>{
     setShowForm(true);
     setIsEdit(true);
@@ -79,7 +81,6 @@ function App() {
           setShow(item)
         }
       })
-      // console.log(toBeUpdated)
       setLocalData(toBeUpdated);
       
       setRecipe('');
@@ -100,13 +101,11 @@ function App() {
     setEditId('');
   }
 
-  const displayedItem = show ? show : {};
-  const ingr = Object.keys(displayedItem).length > 0 ? show?.ingredients.split('/') : [];
-  const dir = Object.keys(displayedItem).length > 0 ? show?.directions.split('/') : [];
-  const keys = Object.keys(displayedItem).length > 0 ? Object.keys(show) : [];
+  const ingr = Object.keys(show).length > 0 ? show?.ingredients.split('/') : [];
+  const dir = Object.keys(show).length > 0 ? show?.directions.split('/') : [];
+  const keys = Object.keys(show).length > 0 ? Object.keys(show) : [];
   return (
     <div className="container">
-       {/* {console.log(show, 'show', displayedItem)} */}
       <div className={showForm ? 'form-container' : 'hide-form'}>
         <form className='form' onSubmit={handleSubmit}>
           <label id='recipe'>Recipe</label>
@@ -122,14 +121,12 @@ function App() {
         </form>
       </div>
 
-      {/* <div> */}
       <p className='recipe-box'>Recipe Box</p>
       <div className='recipe-names'>
         <table>
           <tbody>
             {localData.map((item, i) =>{
               return (
-                // <p key={item.id} onClick={(e) => setShow(item)} id ={item.id}>{item.recipe}</p>
                 <tr key={i}>
                   <td onClick={(e) => setShow(item)} id ={item.id}>{item.recipe}</td>
                 </tr>
@@ -142,10 +139,9 @@ function App() {
       <div className='recipe-details'>
         <div className='recipe-details-header'>
           <span>{show?.recipe}</span> 
-          <button className={Object.keys(displayedItem).length > 0 ? 'delete-btn' : 'hide-btn'} onClick={handleDelete} id={show?.id} type='button'>Delete</button>
-          <button type='button' onClick={handleEdit} id={show?.id} className={Object.keys(displayedItem).length > 0 ? 'edit-btn' : 'hide-btn'}>Edit</button>
+          <button className={Object.keys(show).length > 0 ? 'delete-btn' : 'hide-btn'} onClick={handleDelete} id={show?.id} type='button'>Delete</button>
+          <button type='button' onClick={handleEdit} id={show?.id} className={Object.keys(show).length > 0 ? 'edit-btn' : 'hide-btn'}>Edit</button>
         </div>
-        {/* {show?.ingredients}, {show?.directions}  */}
         <div className='details-container'>
           <p>{keys[1]}</p>
           <ul>
@@ -169,7 +165,6 @@ function App() {
           <button type='button' className='create-btn' onClick={() => setShowForm(true)}>Create recipe</button>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 }

@@ -90,7 +90,7 @@ label{
     width: 100%;
     overflow-y: scroll;
 }
-.recipe-names tr:nth-child(even) {
+.recipe-names tr:nth-child(odd) {
     background-color: #fa9b3c;
 }
 .recipe-names table{
