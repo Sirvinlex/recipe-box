@@ -108,11 +108,11 @@ function App() {
     <div className="container">
       <div className={showForm ? 'form-container' : 'hide-form'}>
         <form className='form' onSubmit={handleSubmit}>
-          <label id='recipe'>Recipe</label>
-          <input className='input' placeholder='Recipe name' onChange={handleRecipe} type='text' value={recipe} />
-          <label id='ingredients'>Ingredients</label>
+          <label htmlFor='recipe' >Recipe</label>
+          <input id='recipe' className='input' placeholder='Recipe name' onChange={handleRecipe} type='text' value={recipe} />
+          <label htmlFor='ingredients' >Ingredients</label>
           <textarea className='text-area1' placeholder='Separate each ingredient with a "/": Oil / pepper / tomatoes' onChange={handleIng} id='ingredients' value={ingredients} />
-          <label id='directions'>Directions</label>
+          <label htmlFor='directions' >Directions</label>
           <textarea className='text-area2' placeholder='Separate each step with a "/": Add two spoons of powdered pepper. / Add 10ml of oil. ' onChange={handleDir} id='directions' value={directions} />
           <div className='btn-container'>
             {isEdit ? <button onClick={submitEdit} type='button' className='submit-btn'>Submit</button> : <button type='submit' className='add-btn'>Add</button>}
